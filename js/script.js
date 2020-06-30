@@ -1,11 +1,3 @@
-//Menu
-$(document).ready(function() {
-	$('.header__burger').click(function(event) {
-		$('.header__burger,.header__menu').toggleClass('active');
-		$('body').toggleClass('lock');
-	});
-});
- 
 //самовызывающ. функция для бэкграунда меню при скроле
 (function () {
 		const header = document.querySelector('.header');
@@ -19,18 +11,22 @@ $(document).ready(function() {
 }());
 
 //Вариант бургера из видео: (без jquery)
-
-//(function (){
-//	const burgerItem = document.querySelector('.burger');
-//	const menu = document.querySelector('.header__menu');
-//	const menuCloseItem = document.querySelector('.burger');
-//		burgerItem.addEventListener('click', () => {
-//			menu.classList.toggle('active');
-//	});
-//	// menuCloseItem.addEventListener('click', () => {
-//	// 	menu.classList.remove('header__menu_active');
-//	//});
-//}());
+(function (){
+	const burgerItem = document.querySelector('.burger');
+	const menu = document.querySelector('.header__menu');
+	const burgerIcon = document.querySelector('.header__burger');
+	const body = document.querySelector('body');
+	const menuCloseItem = document.querySelector('.header__menu');
+		burgerItem.addEventListener('click', () => {
+			menu.classList.toggle('active');
+			burgerIcon.classList.toggle('active');
+			body.classList.toggle('lock');
+		});
+		menuCloseItem.addEventListener('click', () => {
+			menu.classList.toggle('active');
+			burgerIcon.classList.toggle('active');
+		});
+}());
 
 // Scroll to anchors
 (function () {
@@ -41,15 +37,13 @@ $(document).ready(function() {
 		 let targetPosition = target.getBoundingClientRect().top - headerElHeight;
 		 let startPosition = window.pageYOffset;
 		 let startTime = null;
-	
-		 const ease = function(t,b,c,d) {
+			 const ease = function(t,b,c,d) {
 			  t /= d / 2;
 			  if (t < 1) return c / 2 * t * t + b;
 			  t--;
 			  return -c / 2 * (t * (t - 2) - 1) + b;
 		 };
-	
-		 const animation = function(currentTime){
+			 const animation = function(currentTime){
 			  if (startTime === null) startTime = currentTime;
 			  const timeElapsed = currentTime - startTime;
 			  const run = ease(timeElapsed, startPosition, targetPosition, duration);
@@ -57,7 +51,6 @@ $(document).ready(function() {
 			  if (timeElapsed < duration) requestAnimationFrame(animation);
 		 };
 		 requestAnimationFrame(animation);
-
 	};
 
 	const scrollTo = function () {
