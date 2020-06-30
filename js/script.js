@@ -1,3 +1,13 @@
+$(document).ready(function() {
+	$('.header__burger').click(function(event) {
+		$('.header__burger,.header__menu').toggleClass('active');
+		$('body').toggleClass('lock');
+	});
+	$('.header__link').click(function(event) {
+		$('.header__burger,.header__link,.header__menu').toggleClass('active');
+	});
+});
+ 
 //самовызывающ. функция для бэкграунда меню при скроле
 (function () {
 		const header = document.querySelector('.header');
@@ -10,25 +20,7 @@
 		};
 }());
 
-//Вариант бургера из видео: (без jquery)
-(function (){
-	const burgerItem = document.querySelector('.burger');
-	const menu = document.querySelector('.header__menu');
-	const burgerIcon = document.querySelector('.header__burger');
-	const body = document.querySelector('body');
-	const menuCloseItem = document.querySelector('.header__menu');
-		burgerItem.addEventListener('click', () => {
-			menu.classList.toggle('active');
-			burgerIcon.classList.toggle('active');
-			body.classList.toggle('lock');
-		});
-		menuCloseItem.addEventListener('click', () => {
-			menu.classList.toggle('active');
-			burgerIcon.classList.toggle('active');
-		});
-}());
 
-// Scroll to anchors
 (function () {
 
 	const smoothScroll = function (targetEl, duration) {
